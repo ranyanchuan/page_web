@@ -39,7 +39,7 @@ const Chat = (props: any) => {
 
   // 保存网页 
   const saveHtml = async (payload: any) => {
-    const { code, data }: any = await dispatch({
+    return await dispatch({
       type: "commonModel/postData",
       apiUrl: "saveHtmlUrl",
       payload,
@@ -128,13 +128,19 @@ const Chat = (props: any) => {
           await actionChrome("modifyUrl", chromeTabId, { url }); // 修改URL
           try {
             setTimeout(async () => {
-
               try {
                 await actionChrome("clickMoreByCls", chromeTabId, { cls: "show-more", maxCount: 3 }); // 查看更多评论
                 setTimeout(async () => {
                   try {
                     const attach_html = await actionChrome("getDomHtml", chromeTabId, { "id": "noteContainer" }); // 获取网页信息
-                    await saveHtml({ html: attach_html, category: "xhs_detail", url, "col_name": 'note_desc' })
+                    let htmlRes=await saveHtml({ html: attach_html, category: "xhs_detail", url, "col_name": 'note_desc' })
+                    if(!htmlRes || htmlRes.code!==200){
+                      setLoadingXhsDesc(false)
+                      message.info(`后端异常`)
+                      clearInterval(intervalId);
+                      xhsDescError = true
+                    }
+
                   }
                   catch (err) {
                     setLoadingXhsDesc(false)
@@ -152,8 +158,7 @@ const Chat = (props: any) => {
               }
 
             }, 2000)
-          }
-          catch (err) {
+          }catch (err) {
             message.info(`爬取失败`)
             setLoadingXhsDesc(false)
             xhsDescError = true
@@ -196,10 +201,10 @@ const Chat = (props: any) => {
 
 
       <div className="home_conatainer">
-        <Button type="primary" onClick={() => onClickSaveHtml()}>抓取当前页面</Button>
+        {/* <Button type="primary" onClick={() => onClickSaveHtml()}>抓取当前页面</Button>
         <Button type="primary" onClick={() => onClickMoreComment()}>展开小红书评论</Button>
         <Button type="primary" onClick={() => onClickAppHtml()}>抓取小红书详情Dom</Button>
-        <Button type="primary" onClick={() => onClickSaveXhsUserID()}>抓取小红书用户笔记ID</Button>
+        <Button type="primary" onClick={() => onClickSaveXhsUserID()}>抓取小红书用户笔记ID</Button> */}
         <Button type="primary" loading={loadingXhsDesc} onClick={() => onClickSaveXhsNoteDesc()}>抓取小红书笔记详情</Button>
 
       </div>
