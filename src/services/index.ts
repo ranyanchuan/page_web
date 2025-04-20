@@ -28,6 +28,9 @@ const api = {
   saveHtmlUrl: `http://8.219.212.171:8008/api/v1/xhs/html/add`, // 获取助手信息
   getDocUrl: `http://8.219.212.171:8008/api/v1/xhs/doc/first`, // 获取助手信息
 
+  // saveHtmlUrl: `http://127.0.0.1:8008/api/v1/xhs/html/add`, // 获取助手信息
+  // getDocUrl: `http://127.0.0.1:8008/api/v1/xhs/doc/first`, // 获取助手信息
+
   
 }
 

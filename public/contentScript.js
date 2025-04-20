@@ -58,7 +58,7 @@ chrome.runtime.onMessage.addListener(async function (request, sender,sendRespons
     
     // 滚动浏览器
     if(func=="windowScroll"){
-        window.scrollBy(0, 2000)
+        window.scrollBy(0, 3000)
     }
 
 });
