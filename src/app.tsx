@@ -1,6 +1,5 @@
 import { history } from "umi";
-import { Layout } from 'antd';
-import LayoutSider from "@/components/LayoutSider";
+
 
 /** 获取用户信息比较慢的时候会展示一个 loading */
 export const initialStateConfig = {

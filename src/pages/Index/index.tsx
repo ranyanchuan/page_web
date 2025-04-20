@@ -5,13 +5,12 @@ import { Button, message } from 'antd';
 import "./index.less";
 import { connect, useDispatch } from "umi";
 import { actionChrome, getChromePage, initChromeTab } from "@/utils";
-
+let xhsDescError = false
 const Chat = (props: any) => {
 
   const [chromeTabId, setChromeTabId] = useState(""); // 当前激活tab
   const [loadingXhsDesc, setLoadingXhsDesc] = useState(false); // 当前激活tab
   const dispatch = useDispatch();
-
 
   useEffect(() => {
     initChromTabId() // 初始化浏览器激活tab
@@ -114,60 +113,74 @@ const Chat = (props: any) => {
 
     let count = 0; // 计数器
     const maxCount = 100; // 最大执行次数
-    const interval = 15000; // 10秒，单位是毫秒
+    const interval = 18000; // 10秒，单位是毫秒
     setLoadingXhsDesc(true)
 
     const intervalId = setInterval(async () => {
       count++; // 每次执行时计数器加1
-      console.log(`第${count}次执行任务`);
+      console.log(`第${count}次执行任务，${xhsDescError}`);
 
-      const { code, result } = await getDocFirst("note_url")
-      if (code == 200) {
-        // let url="https://www.xiaohongshu.com/user/profile/55a1fc6e67bc6542f173f869/6691c152000000000a004357?xsec_token=ABlSy-O-fN7DMaRshQVdjQX2G54BandQajhD7CJ325flA=&xsec_source=pc_user"
-        let url = result.url // 更新URL
-        await actionChrome("modifyUrl", chromeTabId, { url }); // 修改URL
-        try {
-          setTimeout(async () => {
+      if (xhsDescError == false) {
+        const { code, result } = await getDocFirst("note_url")
+        if (code == 200) {
+          // let url="https://www.xiaohongshu.com/user/profile/55a1fc6e67bc6542f173f869/6691c152000000000a004357?xsec_token=ABlSy-O-fN7DMaRshQVdjQX2G54BandQajhD7CJ325flA=&xsec_source=pc_user"
+          let url = result.url // 更新URL
+          await actionChrome("modifyUrl", chromeTabId, { url }); // 修改URL
+          try {
+            setTimeout(async () => {
 
-            try {
-              await actionChrome("clickMoreByCls", chromeTabId, { cls: "show-more", maxCount: 3 }); // 查看更多评论
-              setTimeout(async () => {
-                try {
-                  const attach_html = await actionChrome("getDomHtml", chromeTabId, { "id": "noteContainer" }); // 获取网页信息
-                  await saveHtml({ html: attach_html, category: "xhs_detail", url, "col_name": 'note_desc' })
-                }
-                catch (err) {
-                  setLoadingXhsDesc(false)
-                  message.info(`后端异常`)
-                  clearInterval(intervalId);
-                }
-              }, 8000)
-            }
-            catch (err) {
-              setLoadingXhsDesc(false)
-              message.info(`查看更多评论`)
-              clearInterval(intervalId);
-            }
+              try {
+                await actionChrome("clickMoreByCls", chromeTabId, { cls: "show-more", maxCount: 3 }); // 查看更多评论
+                setTimeout(async () => {
+                  try {
+                    const attach_html = await actionChrome("getDomHtml", chromeTabId, { "id": "noteContainer" }); // 获取网页信息
+                    await saveHtml({ html: attach_html, category: "xhs_detail", url, "col_name": 'note_desc' })
+                  }
+                  catch (err) {
+                    setLoadingXhsDesc(false)
+                    message.info(`后端异常`)
+                    clearInterval(intervalId);
+                    xhsDescError = true
+                  }
+                }, 8000)
+              }
+              catch (err) {
+                setLoadingXhsDesc(false)
+                message.info(`查看更多评论`)
+                clearInterval(intervalId);
+                xhsDescError = true
+              }
 
-          }, 2000)
-        }
-        catch (err) {
-          message.info(`爬取失败`)
+            }, 2000)
+          }
+          catch (err) {
+            message.info(`爬取失败`)
+            setLoadingXhsDesc(false)
+            xhsDescError = true
+            clearInterval(intervalId);
+          }
+        } else {
           setLoadingXhsDesc(false)
           clearInterval(intervalId);
+          xhsDescError = true
+          console.log("后端异常");
+        }
+
+        // 如果执行次数达到最大值，清除定时器
+        if (count >= maxCount || !result.url) {
+          clearInterval(intervalId);
+          setLoadingXhsDesc(false)
+          xhsDescError = true
+          console.log("任务执行完毕");
         }
       }else{
-        setLoadingXhsDesc(false)
         clearInterval(intervalId);
-        console.log("后端异常");
+        setLoadingXhsDesc(false)
+        xhsDescError = true
+        console.log("任务执行完毕");
+
       }
 
-      // 如果执行次数达到最大值，清除定时器
-      if (count >= maxCount || !result.url) {
-        clearInterval(intervalId);
-        setLoadingXhsDesc(false)
-        console.log("任务执行完毕");
-      }
     }, interval);
   }
 
@@ -188,7 +201,7 @@ const Chat = (props: any) => {
         <Button type="primary" onClick={() => onClickAppHtml()}>抓取小红书详情Dom</Button>
         <Button type="primary" onClick={() => onClickSaveXhsUserID()}>抓取小红书用户笔记ID</Button>
         <Button type="primary" loading={loadingXhsDesc} onClick={() => onClickSaveXhsNoteDesc()}>抓取小红书笔记详情</Button>
- 
+
       </div>
 
 

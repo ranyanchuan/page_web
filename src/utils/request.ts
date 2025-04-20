@@ -47,9 +47,6 @@ function checkStatus(response: any) {
 
 export function requestJson(url: string, options: any, contentType?: any) {
   const Authorization = getStorageToken();
-  if (!Authorization && !url.includes("api/workflowUser/login") ) {
-    history.push("/login");
-  }
 
   const headers = {
     "Content-Type": "application/json;charset=UTF-8",
@@ -130,10 +127,6 @@ function fetch_timeout(fetchPromise: any, timeout = 1000 * 30) {
       clearTimeout(fetchTimeout); // 清空定时器
       const { code, msg, ...rest } = data;
       // fecthError(code, msg);
-      if (msg == "invalidate token") {
-        localStorage.clear();
-        history.push("/login");
-      }
       if (code == 200) {
         return { code, msg, ...rest };
       }

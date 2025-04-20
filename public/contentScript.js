@@ -21,7 +21,7 @@ chrome.runtime.onMessage.addListener(async function (request, sender,sendRespons
             doc.click();
         }
         count=count+1
-        setTimeout(()=>showMoreMessage(cls,maxCount),500)
+        setTimeout(()=>showMoreMessage(cls,maxCount),1000)
     }
 
     
