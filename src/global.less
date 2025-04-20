@@ -1,0 +1,606 @@
+@import "~antd/es/style/variable.less";
+
+// body,
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6,
+// hr,
+// p,
+// blockquote,
+// dl,
+// dt,
+// dd,
+// ul,
+// ol,
+// li,
+// pre,
+// figcaption,
+// figure,
+// fieldset,
+// legend,
+// button,
+// input,
+// textarea,
+// th,
+// td {
+//   margin: 0;
+//   padding: 0;
+// }
+// /*****
+// 设置正文字体及大小
+// *****/
+// body,
+// button,
+// input,
+// select,
+// textarea {
+//   font-family: '微软雅黑';
+//   color: #30363b;
+// }
+// button {
+//   border: none;
+//   outline: none;
+//   cursor: pointer;
+// }
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6,
+// b {
+//   font-weight: normal;
+// }
+// a {
+//   text-decoration: none;
+// }
+// * {
+//   -ms-word-break: break-all;
+//   word-break: break-all;
+//   -ms-word-wrap: break-word;
+//   word-wrap: break-word;
+//   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+//   -webkit-touch-callout: none;
+//   -webkit-text-size-adjust: none;
+// }
+// li {
+//   list-style: none;
+// }
+// input {
+//   outline: none;
+// }
+// a {
+//   color: #333333;
+//   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+// }
+// body {
+//   height: 100%;
+//   overflow-x: hidden;
+// }
+// img {
+//   border: none;
+//   vertical-align: middle;
+// }
+// address,
+// cite,
+// dfn,
+// em,
+// var,
+// i {
+//   font-style: normal;
+// }
+// /* 去除iphone ipad 设备默认按钮样式 */
+// input[type='button'],
+// input[type='submit'],
+// input[type='reset'],
+// textarea {
+//   -webkit-appearance: none;
+//   border-radius: 0;
+// }
+// input::-webkit-outer-spin-button,
+// input::-webkit-inner-spin-button {
+//   -webkit-appearance: none !important;
+//   margin: 0;
+// }
+// input::-moz-placeholder,
+// textarea::-moz-placeholder {
+//   color: #cccccc;
+// }
+// input:-ms-input-placeholder,
+// textarea:-ms-input-placeholder {
+//   color: #cccccc;
+// }
+// input::-webkit-input-placeholder,
+// textarea::-webkit-input-placeholder {
+//   color: #cccccc;
+// }
+
+// html,
+// body,
+
+html {
+  --ant-primary-color: #4759c5;
+  --ant-primary-color-hover: #4759c5;
+  --ant-primary-color-active: #4759c5;
+  --ant-primary-color-outline: rgba(24, 144, 255, 0.2);
+
+  --ant-primary-1: #e6f7ff;
+  --ant-primary-2: #bae7ff;
+  --ant-primary-3: #91d5ff;
+  --ant-primary-4: #69c0ff;
+  --ant-primary-5: #4759c5;
+  --ant-primary-6: #1890ff;
+  --ant-primary-7: #096dd9;
+
+  // --ant-primary-color-deprecated-pure: ;
+  --ant-primary-color-deprecated-l-35: #cbe6ff;
+  --ant-primary-color-deprecated-l-20: #7ec1ff;
+  --ant-primary-color-deprecated-t-20: #46a6ff;
+  --ant-primary-color-deprecated-t-50: #8cc8ff;
+  --ant-primary-color-deprecated-f-12: rgba(24, 144, 255, 0.12);
+  --ant-primary-color-active-deprecated-f-30: rgba(230, 247, 255, 0.3);
+  --ant-primary-color-active-deprecated-d-02: #dcf4ff;
+
+  // --ant-primary-color: #E83421;
+  // --ant-primary-color-hover: #ff7875;
+  // --ant-primary-color-active: #d9363e;
+  // --ant-primary-color-outline: rgba(255, 77, 79, 0.2);
+
+  // --ant-primary-1: #f3c1c44d;
+  // --ant-primary-2: #ccacae;
+  // --ant-primary-3: #cf7a7e;
+  // --ant-primary-4: #c96166;
+  // --ant-primary-5: #dd5259;
+  // --ant-primary-6: #d5454c;
+  // --ant-primary-7: #d9363e;
+
+  --ant-primary-color-deprecated-l-35: #e6f7ff;
+  --ant-primary-color-deprecated-l-20: #ccacae;
+  --ant-primary-color-deprecated-t-20: #cf7a7e;
+  --ant-primary-color-deprecated-t-50: #c96166;
+  --ant-primary-color-deprecated-f-12: rgba(24, 144, 255, 0.12);
+  --ant-primary-color-active-deprecated-f-30: rgba(230, 247, 255, 0.3);
+  --ant-primary-color-active-deprecated-d-02: #f2adb24a;
+  --ant-success-color: #52c41a;
+  --ant-success-color-hover: #73d13d;
+  --ant-success-color-active: #389e0d;
+  --ant-success-color-outline: rgba(82, 196, 26, 0.2);
+  --ant-success-color-deprecated-bg: #f6ffed;
+  --ant-success-color-deprecated-border: #b7eb8f;
+  --ant-error-color: #ff4d4f;
+  --ant-error-color-hover: #ff7875;
+  --ant-error-color-active: #d9363e;
+  --ant-error-color-outline: rgba(255, 77, 79, 0.2);
+  --ant-error-color-deprecated-bg: #fff2f0;
+  --ant-error-color-deprecated-border: #ffccc7;
+  --ant-warning-color: #faad14;
+  --ant-warning-color-hover: #ffc53d;
+  --ant-warning-color-active: #d48806;
+  --ant-warning-color-outline: rgba(250, 173, 20, 0.2);
+  --ant-warning-color-deprecated-bg: #fffbe6;
+  --ant-warning-color-deprecated-border: #ffe58f;
+  --ant-info-color: #1890ff;
+  --ant-info-color-deprecated-bg: #e6f7ff;
+  --ant-info-color-deprecated-border: #91d5ff;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+  // max-width: 500px;
+}
+
+.contant_width {
+  min-width: 480px;
+  margin: 0 auto;
+}
+
+.max_width {
+  // width: 1440px;
+  margin: 0 auto;
+}
+
+
+
+
+html,
+body,
+#root,
+.App {
+  height: 100%;
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  overflow: hidden;
+  vertical-align: -0.1em;
+  fill: currentColor;
+}
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.ant-pro-basicLayout-content {
+  padding: 0px;
+  margin: 0px;
+}
+
+.ant-layout-sider {
+  position: relative;
+  /* fix firefox can't set width smaller than content on flex item */
+  min-width: 0;
+  background: #fff;
+  transition: all 0.2s;
+}
+
+.ant-layout-header {
+  height: 64px;
+  padding: 0 50px;
+  color: rgba(0, 0, 0, 0.85);
+  line-height: 64px;
+  // background: #001529;
+  background: #fff;
+}
+
+.right_sider {
+  width: 400px;
+  max-width: 400px !important;
+  min-width: 400px !important;
+}
+
+.ant-pro-basicLayout-content {
+  background: 0 0px repeat-y url(./assets/bg.png);
+  background-size: cover;
+  overflow-x: hidden;
+}
+
+.layout_kd_work {
+  // background-color: #fff;
+  background-color: #f9fafd;
+  display: flex;
+  justify-content: flex-start;
+
+  .content_children {
+    flex-grow: 2;
+    // overflow: hidden;
+    width: 300px;
+  }
+}
+
+// 拖拽改变宽
+.Resizer {
+  background: #000;
+  opacity: 0.2;
+  z-index: 1;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding;
+  background-clip: padding-box;
+}
+
+.Resizer:hover {
+  -webkit-transition: all 2s ease;
+  transition: all 2s ease;
+}
+
+.Resizer.horizontal {
+  height: 11px;
+  margin: -5px 0;
+  border-top: 5px solid rgba(255, 255, 255, 0);
+  border-bottom: 5px solid rgba(255, 255, 255, 0);
+  cursor: row-resize;
+  width: 100%;
+}
+
+.Resizer.horizontal:hover {
+  border-top: 5px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 5px solid rgba(0, 0, 0, 0.5);
+}
+
+.Resizer.vertical {
+  width: 11px;
+  margin: 0 -5px;
+  border-left: 5px solid rgba(255, 255, 255, 0);
+  border-right: 5px solid rgba(255, 255, 255, 0);
+  cursor: col-resize;
+}
+
+.Resizer.vertical:hover {
+  border-left: 5px solid rgba(0, 0, 0, 0.5);
+  border-right: 5px solid rgba(0, 0, 0, 0.5);
+}
+
+.Resizer.disabled {
+  cursor: not-allowed;
+}
+
+.Resizer.disabled:hover {
+  border-color: transparent;
+}
+
+.global_back {
+  font-size: 18px;
+  cursor: pointer;
+
+  &:hover {
+    color: @primary-color;
+  }
+}
+
+.ant-pagination-item,
+.ant-table,
+.ant-pro-card,
+.ant-pagination-prev .ant-pagination-item-link,
+.ant-pagination-next .ant-pagination-item-link {
+  background-color: transparent;
+}
+
+.chat_input_content {
+  width: 100%;
+  height: 48px;
+  border-radius: 24px;
+  min-width: 200px;
+  max-width: 600px;
+  padding-bottom: 12px;
+
+  .stop_icon {
+    background-color: #000;
+    border-radius: 28px;
+    width: 28px;
+    height: 28px;
+    text-align: center;
+    padding-top: 1px;
+    cursor: pointer;
+  }
+
+  .ant-input-affix-wrapper {
+    height: 48px;
+    width: 600px;
+    border: 1px dashed @primary-color;
+    border-radius: 24px;
+    padding: 6.5px 18px;
+
+    .ant-input-suffix {
+      cursor: pointer;
+
+      &:hover {
+        color: @primary-color;
+      }
+    }
+
+    &:hover {
+      border-style: solid;
+    }
+
+    &-focused {
+      border-style: solid;
+      box-shadow: 0 0 0 2px fade(@primary-color, 20%);
+    }
+  }
+}
+
+.icon_right {
+  width: 12px;
+  height: 12px;
+  background-color: #009a29;
+  padding: 2px;
+  color: #fff;
+  border-radius: 50%;
+}
+
+// scrollbar
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+:hover::-webkit-scrollbar-thumb {
+  background: hsla(217, 8%, 55%, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 4px;
+}
+
+//  代码显示样式-------
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #3f3f3f;
+  color: #dcdcdc;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-tag {
+  color: #e3ceab;
+}
+
+.hljs-template-tag {
+  color: #dcdcdc;
+}
+
+.hljs-number {
+  color: #8cd0d3;
+}
+
+.hljs-variable,
+.hljs-template-variable,
+.hljs-attribute {
+  color: #efdcbc;
+}
+
+.hljs-literal {
+  color: #efefaf;
+}
+
+.hljs-subst {
+  color: #8f8f8f;
+}
+
+.hljs-title,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-section,
+.hljs-type {
+  color: #efef8f;
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link {
+  color: #dca3a3;
+}
+
+.hljs-deletion,
+.hljs-string,
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #cc9393;
+}
+
+.hljs-addition,
+.hljs-comment,
+.hljs-quote,
+.hljs-meta {
+  color: #7f9f7f;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.style-slider {
+  margin-top: 30px;
+  line-height: 3.2 !important;
+
+  .ant-slider-mark-text {
+    color: #000;
+    font-weight: 500;
+  }
+
+  .ant-tooltip-inner {
+    box-shadow: none;
+    background-color: transparent;
+    color: #000;
+    font-weight: 500;
+  }
+
+  .ant-tooltip-arrow {
+    display: none;
+  }
+
+  .ant-slider-tooltip {
+    top: -30px !important;
+  }
+
+  .ant-slider-handle {
+    width: 24px;
+    height: 24px;
+    margin-top: -4px;
+    border: solid 2px #4759c5 !important;
+    background-color: #4759c5;
+
+    &::before {
+      position: absolute;
+      left: 50%;
+      top: calc(50% - 3px);
+      content: " ";
+      background-color: #fff;
+      display: block;
+      width: 1px;
+      height: 6px;
+      border-radius: 2px;
+    }
+  }
+
+  .ant-slider-rail {
+    height: 17px;
+    background: linear-gradient(135deg, #d6dffd 0%, #fee2e2 100%);
+    border-radius: 8px;
+  }
+
+  .ant-slider-track {
+    opacity: 0;
+  }
+
+  .ant-slider-step {
+    height: 17px;
+  }
+
+  .ant-slider-dot {
+    opacity: 0;
+  }
+}
+
+.table_tab {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.edit_text {
+  margin: 0px 5px;
+  padding: 1px 8px;
+  border-radius: 4px;
+  outline: rgb(36, 84, 255) solid 1px;
+  box-shadow: none;
+  // display:flex;
+}
+
+.source_pop {
+  max-width: 50vw;
+  max-height: 40vh;
+  overflow: auto;
+}
+
+.markdown_container {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 0;
+    margin-bottom: 0.1em;
+    color: rgba(0, 0, 0, 0.85);
+    font-weight: 500;
+  }
+
+  p {
+    margin-top: 0;
+    margin-bottom: 0.1em;
+  }
+
+  ol,
+  ul,
+  dl {
+    margin-top: 0;
+    margin-left: -24px;
+    margin-bottom: 0.1em;
+  }
+
+  li {
+    margin-bottom: -4px;
+  }
+
+}

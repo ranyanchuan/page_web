@@ -1,0 +1,46 @@
+{
+  "manifest_version": 3,
+  "name": "数智预报员助手",
+  "version": "1.0.0",
+  "description": "数智预报员助手",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "sidePanel",
+    "contextMenus",
+    "tabs",
+    "background",
+    "management",
+    "scripting"
+  ],
+  "icons": {
+    "48": "assets/logo2.png",
+    "192": "assets/logo2.png",
+    "512": "assets/logo2.png"
+  },
+
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_path": "index.html",
+    "default_icon": {}
+  },
+  "side_panel": {
+    "default_path": "index.html"
+  },
+
+  
+
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "contentScript.js"
+      ],
+        "run_at": "document_idle"
+    }
+  ]
+}

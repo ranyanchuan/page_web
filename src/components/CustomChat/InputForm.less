@@ -1,0 +1,220 @@
+.chat_query_container {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  z-index: 100;
+  width: 100%;
+
+  .chat_query_body {
+    display: flex;
+    justify-content: center;
+  }
+
+
+
+  .chat_query_content {
+    width: 100%;
+    max-width: 705px;
+    min-width: 200px;
+    position: relative;
+
+    .new_create {
+      // margin-bottom: -48px;
+      // position: absolute;
+      left: -(48px + 13px);
+      bottom: 0;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 48px;
+      width: 48px;
+      background-color: #fff;
+      border-radius: 50%;
+      // margin-right: 13px;
+      cursor: pointer;
+      font-size: 20px;
+
+      &:hover {
+        color: #4759c5;
+      }
+
+      &:active {
+        opacity: 0.8;
+      }
+    }
+
+    .search_input_wrap {
+      min-width: 120px;
+      width: 100%;
+      overflow: hidden;
+      position: absolute;
+      bottom: -48px;
+
+      .search_header_title {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding-bottom: 8px;
+        // background-color: #fff;
+        padding-top: 8px;
+
+   
+
+        .btn_item {
+          // margin-left: 16px;
+          cursor: pointer;
+          padding-left: 8px;
+          padding-right: 8px;
+          border-radius: 20px;
+          border: 1px solid #EEEEEE;
+          margin-right: 8px;
+          background-color: #fff;
+
+        }
+
+        .btn_item_act {
+          background-color: #EEEEEE;
+          color: #4759C5;
+          background: #F4F7FC;
+          border-radius: 20px;
+          padding-left: 8px;
+          padding-right: 8px;
+        }
+
+        .btn_item:hover{
+          background-color: #EEEEEE;
+          color: #4759C5;
+          background: #F4F7FC;
+          border-radius: 20px;
+          padding-left: 8px;
+          padding-right: 8px;
+        }
+
+        .create_btn{
+          padding-left: 0px;
+          padding-right: 0px;
+          margin-left: 8px;
+        }
+
+        .create_btn:hover{
+          padding-left: 0px;
+          padding-right: 0px;
+        }
+
+      }
+
+
+      .search_input_title {
+        height: 46px;
+        display: flex;
+        align-items: center;
+        color: #888888;
+        padding-left: 24px;
+        padding-right: 20px;
+        border-bottom: 1px dashed #4759c5;
+        background: #f9fafd;
+
+        .ai_info {
+          margin: 0 6px;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          cursor: pointer;
+          padding: 4px;
+          height: 28px;
+          border-radius: 4px;
+
+          .avatar {
+            width: 20px;
+            height: 20px;
+            display: block;
+            border-radius: 50%;
+          }
+
+          .name {
+            color: #222222;
+            font-weight: bold;
+            margin-left: 6px;
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px;
+          }
+
+          &:hover {
+            background: rgba(79, 88, 102, 0.08);
+          }
+        }
+
+        .close {
+          margin-left: auto;
+          cursor: pointer;
+        }
+      }
+    }
+
+
+    .search_body {
+      border: 1px solid #4759c5;
+      border-radius: 8px;
+      padding-right: 20px;
+      background-color: #fff;
+      box-shadow: 0px -20px 30px 0px #fff;
+    }
+
+
+    .search_input_container {
+      display: flex;
+      align-items: end;
+      min-height: 48px;
+      padding-left: 18px;
+
+      .suffix {
+        line-height: 48px;
+        margin-left: 4px;
+        cursor: pointer;
+
+        &:hover {
+          color: #4759c5;
+        }
+      }
+    }
+
+    .search_input_box {
+      background-color: #fff;
+      min-height: 88px;
+      padding: 12px 0;
+      flex: 1;
+      width: 0;
+      box-shadow: none;
+      border: none;
+      outline: none;
+
+      .table_tab {
+        padding-top: 4px;
+        padding-bottom: 4px;
+      }
+    }
+
+    .search_input_box:empty::before {
+      content: attr(placeholder);
+      color: #999;
+    }
+  }
+
+  .chat_query_footer {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    bottom: -48px;
+
+    .warn_text {
+      font-weight: 400;
+      font-size: 13px;
+      color: #888888;
+      margin-top: 8px;
+    }
+  }
+}

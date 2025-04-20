@@ -1,0 +1,60 @@
+{
+  "name": "cma_flow_extension",
+  "version": "0.0.1",
+  "private": true,
+  "description": "数智预报员助手",
+  "scripts": {
+    "start": "cross-env REACT_APP_ENV=prod umi dev",
+    "start:cqu": "cross-env REACT_APP_ENV=cqu umi dev",
+    "analyze": "cross-env ANALYZE=1 umi build",
+    "build": "cross-env REACT_APP_ENV=prod umi build",
+    "build:qxj": "cross-env REACT_APP_ENV=qxj umi build",
+    "build:sfz": "cross-env REACT_APP_ENV=sfz umi build",
+    "build:test": "set NODE_OPTIONS=--openssl-legacy-provider && cross-env REACT_APP_ENV=test umi build",
+    "postinstall": "umi generate tmp",
+    "prettier": "prettier -c --write \"src/**/*\""
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 10"
+  ],
+  "dependencies": {
+    "@ant-design/pro-components": "^2.6.43",
+    "@ant-design/pro-table": "2.69.0",
+    "@microsoft/fetch-event-source": "^2.0.1",
+    "antd": "^4.21.6",
+    "axios": "^1.7.7",
+    "caniuse-lite": "^1.0.30001642",
+    "docx-preview": "^0.3.2",
+    "echarts": "^5.3.3",
+    "immer": "^10.1.1",
+    "moment": "^2.29.0",
+    "rc-queue-anim": "^2.0.0",
+    "react": "^17.0.0",
+    "react-highlight": "^0.15.0",
+    "react-markdown": "^9.0.1",
+    "react-resizable": "^3.0.5",
+    "react-split-pane": "^0.1.92",
+    "react-virtualized": "^9.22.5",
+    "reactflow": "11.9.4",
+    "rehype-katex": "^7.0.0",
+    "rehype-raw": "^7.0.0",
+    "remark-gfm": "^4.0.0",
+    "remark-math": "^6.0.0",
+    "socket.io-client": "^4.7.2",
+    "umi": "^3.2.16",
+    "use-immer": "^0.9.0"
+  },
+  "devDependencies": {
+    "@types/react-virtualized": "^9.21.30",
+    "@umijs/preset-react": "^1.4.8",
+    "@umijs/yorkie": "^2.0.3",
+    "cross-env": "^7.0.0",
+    "lint-staged": "^10.0.7",
+    "prettier": "^2.0.1"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}

@@ -1,0 +1,47 @@
+.login_container {
+  display: flex;
+  justify-content: center;
+  /* 水平居中 */
+  align-items: center;
+  /* 垂直居中 */
+  height: 100vh;
+  /* 或者其他指定高度 */
+
+  .login_body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .login_logo {
+      .login_title {
+        font-family: PingFangSC, PingFang SC;
+        font-weight: 500;
+        font-size: 14px;
+        color: #000000;
+        line-height: 20px;
+        text-align: left;
+        font-style: normal;
+        margin-bottom: 30px;
+        margin-top: 10px;
+      }
+      display: grid;
+      align-items: center;
+      justify-items: center;
+    }
+    .login_form {
+      width: 280px;
+      .ant-input {
+        border-radius: 25px;
+        padding-left: 22px;
+      }
+    }
+    .login_form_button {
+      width: 280px;
+      height: 38px;
+      border-radius: 25px;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}

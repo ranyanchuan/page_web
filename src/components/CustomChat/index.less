@@ -1,0 +1,113 @@
+// 对话和输入框过度
+.chat_hide_container {
+  max-width: 705px;
+  min-width: 400px;
+  width: 100%;
+  padding-top: 78px;
+  background-image: -webkit-gradient(linear,
+      left top,
+      left bottom,
+      from(rgba(255, 255, 255, 0)),
+      to(#fff));
+  background-image: linear-gradient(-180deg,
+      rgba(255, 255, 255, 0) 0%,
+      #fff 100%);
+  position: absolute;
+  bottom: 0;
+  z-index: 10;
+}
+
+.custom_chat_container {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Noto Sans, Helvetica,
+    Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+  // background-color: #fff;
+  position: relative;
+
+  .chat_list_container {
+    overflow: scroll;
+    scrollbar-width: none;
+    padding-bottom: 56px;
+  }
+
+  .chat_list {
+    margin: 0 auto;
+    max-width: 705px;
+    min-width: 200px;
+    padding-bottom: 10px;
+    padding-top: 1px;
+    .last_div {
+      padding-bottom: 24px;
+      // height: 47px;
+      // flex: none;
+      // background: transparent;
+    }
+  }
+
+  .customTextBox {
+    z-index: 19;
+    position: absolute;
+    width: 100%;
+    max-width: 705px;
+    min-width: 320px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -10px;
+    padding: 18px 18px 28px 10px;
+    padding-bottom: 20px;
+    // overflow: hidden;
+    background-color: #fff;
+    border: 1px solid #e2ebee;
+    border-radius: 8px;
+    box-shadow: 2px 4px 9px 0px rgba(25, 45, 79, 0.1);
+
+    @media (max-width: 768px) {
+      margin-bottom: 0px;
+      padding: 0px;
+      font-size: 12px;
+      border: none;
+      border-radius: 0px;
+      box-shadow: none;
+
+      strong {
+        font-size: 12px;
+      }
+    }
+
+    .customTextBoxClose {
+      position: absolute;
+      top: -5px;
+      right: -3px;
+      z-index: 20;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      >svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    >div {
+      max-height: 337px;
+      margin: 0px;
+      padding: 0px 0px 0 28px;
+      overflow-y: auto;
+      color: #343c52;
+      font-weight: 500;
+      font-size: 13px;
+
+      >svg {
+        position: fixed;
+        top: 22px;
+        left: 29px;
+        width: 17px;
+        height: 17px;
+        color: #acc3cb !important;
+        font-size: 12px;
+      }
+    }
+  }
+}

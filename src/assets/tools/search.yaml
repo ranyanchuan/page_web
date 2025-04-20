@@ -1,0 +1,1416 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "openAPI",
+    "description": "阿里云API网关",
+    "version": "last"
+  },
+  "servers": [
+    {
+      "url": "https://openapi.aminer.cn"
+    }
+  ],
+  "tags": [
+    {
+      "name": "基础组件"
+    }
+  ],
+  "paths": {
+    "/aminer-search/search/person": {
+      "post": {
+        "tags": [
+          "基础组件"
+        ],
+        "operationId": "AMinerSearchPerson",
+        "summary": "AMinerSearchPerson(学者搜索)",
+        "description": "学者搜索",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "page",
+                  "size"
+                ],
+                "type": "object",
+                "properties": {
+                  "aggregations": {
+                    "title": "聚合配置",
+                    "type": "array",
+                    "description": "聚合配置",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "field": {
+                          "title": "\n属性:\n\nh_index-h指数;\n\nlang-语言;\n\nnation-国家和地区;\n\ngender-性别;",
+                          "type": "string",
+                          "description": "\n属性:\n\nh_index-h指数;\n\nlang-语言;\n\nnation-国家和地区;\n\ngender-性别;"
+                        },
+                        "order": {
+                          "title": "聚合排序参数(terms类型,filed不为_key及_count时为要排序的子聚合的路径)",
+                          "required": [
+                            "asc",
+                            "field"
+                          ],
+                          "type": "object",
+                          "properties": {
+                            "asc": {
+                              "title": "升序排序",
+                              "type": "boolean",
+                              "description": "升序排序"
+                            },
+                            "field": {
+                              "title": "字段",
+                              "type": "string",
+                              "description": "字段"
+                            }
+                          },
+                          "description": "聚合排序参数(terms类型,filed不为_key及_count时为要排序的子聚合的路径)"
+                        },
+                        "rangeList": {
+                          "title": "分段列表（rang类型）",
+                          "type": "array",
+                          "description": "分段列表（rang类型）",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "from": {
+                                "title": "起始,gte",
+                                "type": "number",
+                                "description": "起始,gte"
+                              },
+                              "to": {
+                                "title": "截止,lte",
+                                "type": "number",
+                                "description": "截止,lte"
+                              }
+                            }
+                          }
+                        },
+                        "size": {
+                          "title": "聚合结果大小(terms类型)",
+                          "type": "number",
+                          "description": "聚合结果大小(terms类型)"
+                        },
+                        "subAggregationList": {
+                          "title": "子聚合参数列表",
+                          "type": "array",
+                          "description": "子聚合参数列表",
+                          "items": {
+                            "type": "object",
+                            "properties": {}
+                          }
+                        },
+                        "type": {
+                          "title": "类型(terms,range,max,min,avg)\t",
+                          "type": "string",
+                          "description": "类型(terms,range,max,min,avg)\t"
+                        }
+                      }
+                    }
+                  },
+                  "needDetails": {
+                    "title": "查询属性",
+                    "type": "boolean",
+                    "description": "查询属性"
+                  },
+                  "page": {
+                    "title": "分页(起始页为0)",
+                    "type": "number",
+                    "description": "分页(起始页为0)"
+                  },
+                  "query": {
+                    "title": "通用查询词",
+                    "type": "string",
+                    "description": "通用查询词"
+                  },
+                  "searchKeyWordList": {
+                    "title": "高级搜索词列表",
+                    "type": "array",
+                    "description": "高级搜索词列表",
+                    "items": {
+                      "required": [
+                        "keyword",
+                        "operate",
+                        "wordType"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "advanced": {
+                          "title": "是否高级搜索",
+                          "type": "boolean",
+                          "description": "是否高级搜索"
+                        },
+                        "fieldMap": {
+                          "title": "字段映射及字段权重(如无特殊需求,参数请勿添加此字段)",
+                          "type": "object",
+                          "properties": {},
+                          "description": "字段映射及字段权重(如无特殊需求,参数请勿添加此字段)"
+                        },
+                        "keyword": {
+                          "title": "关键词",
+                          "type": "string",
+                          "description": "关键词"
+                        },
+                        "language": {
+                          "title": "词语言(如无特殊需求,参数请勿添加此字段)",
+                          "type": "number",
+                          "description": "词语言(如无特殊需求,参数请勿添加此字段)"
+                        },
+                        "needTranslate": {
+                          "title": "是否翻译(非必填,默认为false)",
+                          "type": "boolean",
+                          "description": "是否翻译(非必填,默认为false)"
+                        },
+                        "operate": {
+                          "title": "\n搜索运算类型:\n\n0-并且;\n\n1-或者;\n\n2-且非;",
+                          "type": "number",
+                          "description": "\n搜索运算类型:\n\n0-并且;\n\n1-或者;\n\n2-且非;"
+                        },
+                        "segmentationWord": {
+                          "title": "是否分词(非必填,默认为false)",
+                          "type": "boolean",
+                          "description": "是否分词(非必填,默认为false)"
+                        },
+                        "userInput": {
+                          "title": "是否用户输入(非必填,默认为true)",
+                          "type": "boolean",
+                          "description": "是否用户输入(非必填,默认为true)"
+                        },
+                        "weight": {
+                          "title": "词权重(如无特殊需求,参数请勿添加此字段)",
+                          "type": "number",
+                          "description": "词权重(如无特殊需求,参数请勿添加此字段)"
+                        },
+                        "wordType": {
+                          "title": "\n词类型:\n\n0-术语;\n\n4-作者;\n\n5-组织;",
+                          "type": "number",
+                          "description": "\n词类型:\n\n0-术语;\n\n4-作者;\n\n5-组织;"
+                        }
+                      }
+                    }
+                  },
+                  "size": {
+                    "title": "页长(最小为1)",
+                    "type": "number",
+                    "description": "页长(最小为1)"
+                  },
+                  "sort": {
+                    "title": "排序",
+                    "type": "array",
+                    "description": "排序",
+                    "items": {
+                      "required": [
+                        "asc",
+                        "field"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "asc": {
+                          "title": "升序排序",
+                          "type": "boolean",
+                          "description": "升序排序"
+                        },
+                        "field": {
+                          "title": "\n字段:\n\nh_index-h指数;\n\nactivity-学术活跃度;\n\nrising_star-领域新星;\n\nn_citation-引用数;\n\nn_pubs-论文数;",
+                          "type": "string",
+                          "description": "\n字段:\n\nh_index-h指数;\n\nactivity-学术活跃度;\n\nrising_star-领域新星;\n\nn_citation-引用数;\n\nn_pubs-论文数;"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "required": [
+                    "code",
+                    "data",
+                    "msg",
+                    "success"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "title": "错误码",
+                      "type": "number",
+                      "description": "错误码"
+                    },
+                    "success": {
+                      "title": "接口成功信息",
+                      "type": "boolean",
+                      "description": "接口成功信息"
+                    },
+                    "data": {
+                      "title": "返回数据",
+                      "type": "object",
+                      "properties": {
+                        "hitList": {
+                          "title": "命中列表",
+                          "type": "array",
+                          "description": "命中列表",
+                          "items": {
+                            "required": [
+                              "id"
+                            ],
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "title": "id",
+                                "type": "string",
+                                "description": "id"
+                              },
+                              "name": {
+                                "title": "英文姓名",
+                                "type": "string",
+                                "description": "英文姓名"
+                              },
+                              "nameZh": {
+                                "title": "中文姓名",
+                                "type": "string",
+                                "description": "中文姓名"
+                              },
+                              "gender": {
+                                "title": "性别",
+                                "type": "string",
+                                "description": "性别"
+                              },
+                              "org": {
+                                "title": "组织",
+                                "type": "string",
+                                "description": "组织"
+                              },
+                              "orgZh": {
+                                "title": "中文组织",
+                                "type": "string",
+                                "description": "中文组织"
+                              },
+                              "interests": {
+                                "title": "研究兴趣",
+                                "type": "array",
+                                "description": "研究兴趣",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "avatar": {
+                                "title": "头像",
+                                "type": "string",
+                                "description": "头像"
+                              },
+                              "language": {
+                                "title": "语言",
+                                "type": "string",
+                                "description": "\n语言(\n\n\"chinese\"\n\n\"english\"\n\n\"french\"\n\n\"german\"\n\n\"greek\"\n\n\"japanese\"\n\n\"unknown\"\n\n\"korean\"\n\n\"indian\"\n\n\"hindi\"\n\n\"italian\"\n\n\"spanish\"\n\n\"dutch\"\n\n\"russian\"\n\n\"swedish\"\n\n\"arabic\"\n\n\"portuguese\"\n\n\"hebrew\"\n\n\"bengali\"\n\n\"turkish\")"
+                              },
+                              "location": {
+                                "type": "string"
+                              },
+                              "nation": {
+                                "title": "国家或地区",
+                                "type": "string",
+                                "description": "国家或地区"
+                              },
+                              "activity": {
+                                "type": "number"
+                              },
+                              "contact": {
+                                "title": "人为标注信息",
+                                "type": "object",
+                                "properties": {},
+                                "description": "人为标注信息"
+                              },
+                              "gindex": {
+                                "type": "number"
+                              },
+                              "hindex": {
+                                "type": "number"
+                              },
+                              "npubs": {
+                                "title": "论文数",
+                                "type": "number",
+                                "description": "论文数"
+                              },
+                              "ncitation": {
+                                "title": "引用数",
+                                "type": "number",
+                                "description": "引用数"
+                              }
+                            }
+                          }
+                        },
+                        "hitsTotal": {
+                          "title": "命中数",
+                          "type": "number",
+                          "description": "命中数"
+                        },
+                        "aggregationMap": {
+                          "title": "聚合信息",
+                          "type": "object",
+                          "properties": {},
+                          "description": "聚合信息"
+                        }
+                      },
+                      "description": "返回数据"
+                    },
+                    "msg": {
+                      "type": "string",
+                      "description": "接口成功说明"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "root"
+      }
+    },
+    "/aminer-search/search/publication": {
+      "post": {
+        "tags": [
+          "基础组件"
+        ],
+        "operationId": "AMinerSearchPublication",
+        "summary": "AMinerSearchPublication(论文搜索)",
+        "description": "论文搜索",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "page",
+                  "size"
+                ],
+                "type": "object",
+                "properties": {
+                  "aggregations": {
+                    "title": "聚合配置",
+                    "type": "array",
+                    "description": "聚合配置",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "field": {
+                          "title": "\n属性:\n\nkeywords.keyword-关键词;\n\nauthors.orgid-作者机构id;\n\nyear-发表年份;",
+                          "type": "string",
+                          "description": "\n属性:\n\nkeywords.keyword-关键词;\n\nauthors.orgid-作者机构id;\n\nyear-发表年份;"
+                        },
+                        "order": {
+                          "title": "聚合排序参数(terms类型,filed不为_key及_count时为要排序的子聚合的路径)",
+                          "required": [
+                            "asc",
+                            "field"
+                          ],
+                          "type": "object",
+                          "properties": {
+                            "asc": {
+                              "title": "升序排序",
+                              "type": "boolean",
+                              "description": "升序排序"
+                            },
+                            "field": {
+                              "title": "字段",
+                              "type": "string",
+                              "description": "字段"
+                            }
+                          },
+                          "description": "聚合排序参数(terms类型,filed不为_key及_count时为要排序的子聚合的路径)"
+                        },
+                        "rangeList": {
+                          "title": "分段列表(rang类型)",
+                          "type": "array",
+                          "description": "分段列表(rang类型)",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "from": {
+                                "title": "起始,gte",
+                                "type": "number",
+                                "description": "起始,gte"
+                              },
+                              "to": {
+                                "title": "截止,lte",
+                                "type": "number",
+                                "description": "截止,lte"
+                              }
+                            }
+                          }
+                        },
+                        "size": {
+                          "title": "聚合结果大小(terms类型)",
+                          "type": "number",
+                          "description": "聚合结果大小(terms类型)"
+                        },
+                        "subAggregationList": {
+                          "title": "子聚合参数列表",
+                          "type": "array",
+                          "description": "子聚合参数列表",
+                          "items": {
+                            "type": "object",
+                            "properties": {}
+                          }
+                        },
+                        "type": {
+                          "title": "类型(terms,range,max,min,avg)\t",
+                          "type": "string",
+                          "description": "类型(terms,range,max,min,avg)\t"
+                        }
+                      }
+                    }
+                  },
+                  "needDetails": {
+                    "title": "查询属性",
+                    "type": "boolean",
+                    "description": "查询属性"
+                  },
+                  "page": {
+                    "title": "分页(起始页为0)",
+                    "type": "number",
+                    "description": "分页(起始页为0)"
+                  },
+                  "query": {
+                    "title": "通用查询词",
+                    "type": "string",
+                    "description": "通用查询词"
+                  },
+                  "searchKeyWordList": {
+                    "title": "高级搜索词列表",
+                    "type": "array",
+                    "description": "高级搜索词列表",
+                    "items": {
+                      "required": [
+                        "keyword",
+                        "operate",
+                        "wordType"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "advanced": {
+                          "title": "是否高级搜索",
+                          "type": "boolean",
+                          "description": "是否高级搜索"
+                        },
+                        "fieldMap": {
+                          "title": "字段映射及字段权重(如无特殊需求,参数请勿添加此字段)",
+                          "type": "object",
+                          "properties": {},
+                          "description": "字段映射及字段权重(如无特殊需求,参数请勿添加此字段)"
+                        },
+                        "keyword": {
+                          "title": "关键词",
+                          "type": "string",
+                          "description": "关键词"
+                        },
+                        "language": {
+                          "title": "词语言(如无特殊需求,参数请勿添加此字段)",
+                          "type": "number",
+                          "description": "词语言(如无特殊需求,参数请勿添加此字段)"
+                        },
+                        "needTranslate": {
+                          "title": "是否翻译(非必填,默认为false)",
+                          "type": "boolean",
+                          "description": "是否翻译(非必填,默认为false)"
+                        },
+                        "operate": {
+                          "title": "\n搜索运算类型:\n\n0-并且;\n\n1-或者;\n\n2-且非;",
+                          "type": "number",
+                          "description": "\n搜索运算类型:\n\n0-并且;\n\n1-或者;\n\n2-且非;"
+                        },
+                        "segmentationWord": {
+                          "title": "是否分词(非必填,默认为false)",
+                          "type": "boolean",
+                          "description": "是否分词(非必填,默认为false)"
+                        },
+                        "userInput": {
+                          "title": "是否用户输入(非必填,默认为true)",
+                          "type": "boolean",
+                          "description": "是否用户输入(非必填,默认为true)"
+                        },
+                        "weight": {
+                          "title": "词权重(如无特殊需求,参数请勿添加此字段)",
+                          "type": "number",
+                          "description": "词权重(如无特殊需求,参数请勿添加此字段)"
+                        },
+                        "wordType": {
+                          "title": "\n词类型:\n\n0-术语;\n\n1-标题;\n\n2-关键词;\n\n3-摘要;\n\n4-作者;\n\n5-组织;\n\n6-期刊;",
+                          "type": "number",
+                          "description": "\n词类型:\n\n0-术语;\n\n1-标题;\n\n2-关键词;\n\n3-摘要;\n\n4-作者;\n\n5-组织;\n\n6-期刊;"
+                        }
+                      }
+                    }
+                  },
+                  "size": {
+                    "title": "页长(最小为1)",
+                    "type": "number",
+                    "description": "页长(最小为1)"
+                  },
+                  "sort": {
+                    "title": "排序",
+                    "type": "array",
+                    "description": "排序",
+                    "items": {
+                      "required": [
+                        "asc",
+                        "field"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "asc": {
+                          "title": "升序排序",
+                          "type": "boolean",
+                          "description": "升序排序"
+                        },
+                        "field": {
+                          "title": "\n字段:\n\nyear-发表年份;\n\nn_citation-引用数;",
+                          "type": "string",
+                          "description": "\n字段:\n\nyear-发表年份;\n\nn_citation-引用数;"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "required": [
+                    "code",
+                    "data",
+                    "msg",
+                    "success"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "title": "错误码",
+                      "type": "number",
+                      "description": "错误码"
+                    },
+                    "success": {
+                      "title": "接口成功信息",
+                      "type": "boolean",
+                      "description": "接口成功信息"
+                    },
+                    "data": {
+                      "title": "返回数据",
+                      "type": "object",
+                      "properties": {
+                        "hitList": {
+                          "title": "结果列表",
+                          "type": "array",
+                          "description": "结果列表",
+                          "items": {
+                            "required": [
+                              "id"
+                            ],
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "title": {
+                                "title": "论文标题",
+                                "type": "string",
+                                "description": "论文标题"
+                              },
+                              "titleZh": {
+                                "title": "中文标题",
+                                "type": "string",
+                                "description": "中文标题"
+                              },
+                              "authors": {
+                                "title": "作者",
+                                "type": "array",
+                                "description": "作者",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "language": {
+                                "title": "语言",
+                                "type": "string",
+                                "description": "语言"
+                              },
+                              "year": {
+                                "title": "发表年份",
+                                "type": "number",
+                                "description": "发表年份"
+                              },
+                              "pdf": {
+                                "type": "string"
+                              },
+                              "doi": {
+                                "type": "string"
+                              },
+                              "issn": {
+                                "type": "string"
+                              },
+                              "isbn": {
+                                "type": "string"
+                              },
+                              "pubAbstract": {
+                                "title": "摘要",
+                                "type": "string",
+                                "description": "摘要"
+                              },
+                              "pubAbstractZh": {
+                                "title": "中文摘要",
+                                "type": "string",
+                                "description": "中文摘要"
+                              },
+                              "url": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "keywords": {
+                                "title": "关键词",
+                                "type": "array",
+                                "description": "关键词",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "keywordsZh": {
+                                "title": "中文关键词",
+                                "type": "array",
+                                "description": "中文关键词",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "venue": {
+                                "title": "期刊",
+                                "type": "object",
+                                "properties": {
+                                  "_id": {
+                                    "title": "期刊id",
+                                    "type": "string",
+                                    "description": "期刊id"
+                                  },
+                                  "raw": {
+                                    "title": "期刊名称",
+                                    "type": "string",
+                                    "description": "期刊名称"
+                                  }
+                                },
+                                "description": "期刊"
+                              },
+                              "pageStart": {
+                                "title": "起始页",
+                                "type": "string",
+                                "description": "起始页"
+                              },
+                              "pageEnd": {
+                                "title": "截止页",
+                                "type": "string",
+                                "description": "截止页"
+                              },
+                              "pageString": {
+                                "title": "起始页截止页字符串表示",
+                                "type": "string",
+                                "description": "起始页截止页字符串表示"
+                              },
+                              "volume": {
+                                "title": "期刊卷册号",
+                                "type": "string",
+                                "description": "期刊卷册号"
+                              },
+                              "createDate": {
+                                "type": "string"
+                              },
+                              "ncitation": {
+                                "title": "引用量",
+                                "type": "number",
+                                "description": "引用量"
+                              }
+                            }
+                          }
+                        },
+                        "hitsTotal": {
+                          "title": "命中数量",
+                          "type": "number",
+                          "description": "命中数量"
+                        },
+                        "aggregationMap": {
+                          "title": "聚合信息",
+                          "type": "object",
+                          "properties": {},
+                          "description": "聚合信息"
+                        }
+                      },
+                      "description": "返回数据"
+                    },
+                    "msg": {
+                      "title": "接口成功信息",
+                      "type": "string",
+                      "description": "接口成功信息"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "root"
+      }
+    },
+    "/publicationapi/GetPublication": {
+      "get": {
+        "tags": [
+          "基础组件"
+        ],
+        "operationId": "GetPublication",
+        "summary": "GetPublication(论文信息)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "cited_pubs": {
+                            "type": "object",
+                            "properties": {
+                              "total": {
+                                "type": "number"
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "object",
+                            "properties": {
+                              "context": {
+                                "type": "string"
+                              },
+                              "time": {
+                                "type": "string"
+                              },
+                              "times": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "d": {
+                                      "type": "number"
+                                    },
+                                    "n": {
+                                      "type": "string"
+                                    },
+                                    "s": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "pub": {
+                            "required": [
+                              "id",
+                              "title"
+                            ],
+                            "type": "object",
+                            "properties": {
+                              "abstract": {
+                                "title": "摘要",
+                                "type": "string",
+                                "description": "摘要"
+                              },
+                              "authors": {
+                                "title": "作者列表",
+                                "type": "array",
+                                "description": "作者列表",
+                                "items": {
+                                  "required": [
+                                    "name"
+                                  ],
+                                  "type": "object",
+                                  "properties": {
+                                    "name": {
+                                      "title": "作者姓名",
+                                      "type": "string",
+                                      "description": "作者姓名"
+                                    },
+                                    "id": {
+                                      "title": "作者id",
+                                      "type": "string",
+                                      "description": "作者id"
+                                    },
+                                    "org": {
+                                      "title": "作者机构",
+                                      "type": "string",
+                                      "description": "作者机构"
+                                    },
+                                    "orgid": {
+                                      "title": "机构id",
+                                      "type": "string",
+                                      "description": "机构id"
+                                    },
+                                    "orgs": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "create_time": {
+                                "type": "string"
+                              },
+                              "doi": {
+                                "type": "string"
+                              },
+                              "hashs": {
+                                "type": "object",
+                                "properties": {
+                                  "h1": {
+                                    "type": "string"
+                                  },
+                                  "h3": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "id": {
+                                "type": "string"
+                              },
+                              "issn": {
+                                "type": "string"
+                              },
+                              "keywords": {
+                                "title": "关键词",
+                                "type": "array",
+                                "description": "关键词",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "lang": {
+                                "title": "语言",
+                                "type": "string",
+                                "description": "语言"
+                              },
+                              "num_citation": {
+                                "title": "引用量",
+                                "type": "number",
+                                "description": "引用量"
+                              },
+                              "pages": {
+                                "title": "发表期刊所在页码",
+                                "type": "object",
+                                "properties": {
+                                  "end": {
+                                    "type": "string"
+                                  },
+                                  "start": {
+                                    "type": "string"
+                                  }
+                                },
+                                "description": "发表期刊所在页码"
+                              },
+                              "title": {
+                                "title": "论文标题",
+                                "type": "string",
+                                "description": "论文标题"
+                              },
+                              "pdf": {
+                                "title": "pdf文件链接",
+                                "type": "string",
+                                "description": "pdf文件链接"
+                              },
+                              "update_times": {
+                                "type": "object",
+                                "properties": {
+                                  "u_v_t": {
+                                    "type": "string"
+                                  },
+                                  "u_a_t": {
+                                    "type": "string"
+                                  },
+                                  "u_c_t": {
+                                    "title": "创建时间",
+                                    "type": "string",
+                                    "description": "创建时间"
+                                  }
+                                }
+                              },
+                              "urls": {
+                                "title": "原文url",
+                                "type": "array",
+                                "description": "原文url",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "venue": {
+                                "title": "期刊信息(未对齐实体信息)",
+                                "type": "object",
+                                "properties": {
+                                  "info": {
+                                    "type": "object",
+                                    "properties": {
+                                      "name": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "issue": {
+                                    "type": "string"
+                                  },
+                                  "volume": {
+                                    "type": "string"
+                                  }
+                                },
+                                "description": "期刊信息(未对齐实体信息)"
+                              },
+                              "venue_hhb_id": {
+                                "title": "期刊id",
+                                "type": "string",
+                                "description": "期刊id"
+                              },
+                              "versions": {
+                                "title": "合并版本信息",
+                                "type": "array",
+                                "description": "合并版本信息",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "string"
+                                    },
+                                    "sid": {
+                                      "type": "string"
+                                    },
+                                    "src": {
+                                      "type": "string"
+                                    },
+                                    "vsid": {
+                                      "type": "string"
+                                    },
+                                    "year": {
+                                      "type": "number"
+                                    }
+                                  }
+                                }
+                              },
+                              "year": {
+                                "title": "发表年份",
+                                "type": "number",
+                                "description": "发表年份"
+                              }
+                            }
+                          },
+                          "succeed": {
+                            "type": "boolean"
+                          },
+                          "total_ref": {
+                            "type": "number"
+                          },
+                          "total_sim": {
+                            "type": "number"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/n/zy/coauthors": {
+      "get": {
+        "tags": [
+          "基础组件"
+        ],
+        "summary": "coauthors(相关学者)",
+        "operationId": "coauthors",
+        "description": "学者网络关系",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "学者ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "data": {
+                            "type": "object",
+                            "properties": {
+                              "crs": {
+                                "type": "array",
+                                "description": "关联学者列表",
+                                "items": {
+                                  "required": [
+                                    "id",
+                                    "name",
+                                    "relation",
+                                    "w"
+                                  ],
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "string"
+                                    },
+                                    "name": {
+                                      "type": "string",
+                                      "description": "姓名"
+                                    },
+                                    "relation": {
+                                      "type": "string",
+                                      "description": "学者关系"
+                                    },
+                                    "w": {
+                                      "type": "number",
+                                      "description": "关系紧密度"
+                                    }
+                                  }
+                                }
+                              },
+                              "id": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string",
+                                "description": "学者姓名"
+                              },
+                              "name_zh": {
+                                "type": "string",
+                                "description": "学者姓名（中文）"
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "object",
+                            "properties": {
+                              "context": {
+                                "type": "string"
+                              },
+                              "time": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "succeed": {
+                            "type": "boolean"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/n/zy/personbasicinfo": {
+      "get": {
+        "tags": [
+          "基础组件"
+        ],
+        "operationId": "personbasicinfo",
+        "summary": "personbasicinfo（学者基本信息)",
+        "description": "学者个人基础信息",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "学者ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "data": {
+                            "type": "object",
+                            "properties": {
+                              "aff": {
+                                "type": "string",
+                                "description": "机构"
+                              },
+                              "aff_details": {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "string",
+                                    "description": "机构ID"
+                                  },
+                                  "name_en": {
+                                    "type": "string",
+                                    "description": "机构英文名称"
+                                  },
+                                  "name_zh": {
+                                    "type": "string",
+                                    "description": "机构中文名称"
+                                  }
+                                },
+                                "description": "机构信息"
+                              },
+                              "aff_zh": {
+                                "type": "string",
+                                "description": "机构(中文)"
+                              },
+                              "bio": {
+                                "type": "string",
+                                "description": "个人简介"
+                              },
+                              "edu": {
+                                "type": "string",
+                                "description": "教育经历"
+                              },
+                              "email": {
+                                "type": "string",
+                                "description": "邮箱"
+                              },
+                              "first_paper_time": {
+                                "type": "number",
+                                "description": "第一篇论文时间"
+                              },
+                              "gender": {
+                                "type": "string",
+                                "description": "性别"
+                              },
+                              "geo_info": {
+                                "type": "object",
+                                "properties": {
+                                  "administrative_division": {
+                                    "type": "object",
+                                    "properties": {
+                                      "country": {
+                                        "type": "string"
+                                      },
+                                      "en0": {
+                                        "type": "string"
+                                      },
+                                      "en1": {
+                                        "type": "string"
+                                      },
+                                      "en2": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "formatted_address": {
+                                    "type": "string"
+                                  },
+                                  "geo": {
+                                    "type": "object",
+                                    "properties": {
+                                      "lat": {
+                                        "type": "number"
+                                      },
+                                      "lng": {
+                                        "type": "number"
+                                      }
+                                    }
+                                  },
+                                  "id": {
+                                    "type": "string"
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "org_id": {
+                                    "type": "string"
+                                  }
+                                },
+                                "description": "流动信息"
+                              },
+                              "homepage": {
+                                "type": "string",
+                                "description": "个人主页"
+                              },
+                              "id": {
+                                "type": "string"
+                              },
+                              "labels": {
+                                "type": "array",
+                                "description": "标签",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "language": {
+                                "type": "string",
+                                "description": "语言"
+                              },
+                              "links": {
+                                "type": "object",
+                                "properties": {
+                                  "gs": {
+                                    "type": "object",
+                                    "properties": {
+                                      "creator": {
+                                        "type": "string",
+                                        "description": "标注人员"
+                                      },
+                                      "id": {
+                                        "type": "string"
+                                      },
+                                      "type": {
+                                        "type": "string",
+                                        "description": "连接类型"
+                                      },
+                                      "url": {
+                                        "type": "string",
+                                        "description": "个人主页url"
+                                      }
+                                    },
+                                    "description": "GoogleScholar个人主页"
+                                  },
+                                  "resource": {
+                                    "type": "object",
+                                    "properties": {
+                                      "resource_link": {
+                                        "type": "array",
+                                        "description": "个人主页链接",
+                                        "items": {
+                                          "type": "object",
+                                          "properties": {
+                                            "id": {
+                                              "type": "string",
+                                              "description": "连接类型:hp(个人主页),dblp(dblp主 页)"
+                                            },
+                                            "url": {
+                                              "type": "string",
+                                              "description": "主页连接"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "description": "个人主页链接"
+                              },
+                              "name": {
+                                "type": "string",
+                                "description": "姓名"
+                              },
+                              "name_zh": {
+                                "type": "string",
+                                "description": "中文姓名"
+                              },
+                              "position": {
+                                "type": "string",
+                                "description": "职称"
+                              },
+                              "position_zh": {
+                                "type": "string",
+                                "description": "职称(中文)"
+                              },
+                              "work_details": {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "string"
+                                  },
+                                  "name_en": {
+                                    "type": "string"
+                                  },
+                                  "name_zh": {
+                                    "type": "string"
+                                  }
+                                },
+                                "description": "工作经历"
+                              },
+                              "works": {
+                                "type": "string",
+                                "description": "工作经历"
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "object",
+                            "properties": {
+                              "context": {
+                                "type": "string"
+                              },
+                              "time": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "succeed": {
+                            "type": "boolean"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "x-original-swagger-version": "2.0"
+}

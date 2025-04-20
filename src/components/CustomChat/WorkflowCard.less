@@ -1,0 +1,141 @@
+.workflow_card_container {
+  margin-top: 8px;
+
+  .search_title {
+    color: #1a2029;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    line-height: 28px;
+    // margin-bottom: 8px;
+    height: 28px;
+
+    .web_icon {
+      height: 20px;
+      width: 20px;
+      margin-right: 4px;
+    }
+  }
+
+  .search_container {
+    border-radius: 8px;
+    padding: 0px;
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
+
+    .item_title {
+      color: #1a2029;
+      font-size: 13px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 16px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 4px;
+      margin-top: 4px;
+    }
+
+    .web_search_wrap {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 8px;
+      margin-bottom: 8px;
+
+      .process {
+        width: calc(50% - 5px);
+        flex: 0 0 calc(50% - 5px);
+        padding: 12px;
+        border-radius: 12px;
+        background: #fff;
+        box-sizing: border-box;
+        cursor: pointer;
+        margin-bottom: 8px;
+        border-radius: 8px;
+        border: 1px dashed #999999;
+      }
+
+      .process:hover {
+        border: 1px dashed #4759c5;
+       
+
+        .process_title {
+          color: #4759c5;
+        }
+
+        .process_url {
+          color: #4759c5;
+        }
+      }
+
+      .process:nth-child(odd) {
+        margin-right: 10px;
+      }
+
+      .process_title_wrap {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-bottom: 8px;
+
+        .process_sub{
+          display: flex;
+          justify-content: space-between;
+          overflow: hidden;
+        }
+
+        .process_title {
+          font-style: normal;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          font-family: PingFangSC, PingFang SC;
+          font-weight: 400;
+          font-size: 13px;
+          color: #222222;
+          line-height: 18px;
+          width: 100%;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 1;
+        }
+
+        .process_url {
+          color: #b0b7c0;
+          margin-top: 8px;
+          font-size: 12px;
+          line-height: 12px;
+          white-space: nowrap;
+          font-style: normal;
+          font-weight: 400;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+
+  .open_icon {
+    margin-left: 8px;
+    cursor: pointer;
+  }
+
+  .success_icon {
+    margin-right: 6px;
+  }
+
+  .tool_title_wrap{
+    display: flex;
+    justify-content: flex-start;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    .tool_name_container{
+      white-space: nowrap; 
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
