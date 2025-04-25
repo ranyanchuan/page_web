@@ -5,12 +5,8 @@
   "description": "数智预报员助手",
   "scripts": {
     "start": "cross-env REACT_APP_ENV=prod umi dev",
-    "start:cqu": "cross-env REACT_APP_ENV=cqu umi dev",
     "analyze": "cross-env ANALYZE=1 umi build",
     "build": "cross-env REACT_APP_ENV=prod umi build",
-    "build:qxj": "cross-env REACT_APP_ENV=qxj umi build",
-    "build:sfz": "cross-env REACT_APP_ENV=sfz umi build",
-    "build:test": "set NODE_OPTIONS=--openssl-legacy-provider && cross-env REACT_APP_ENV=test umi build",
     "postinstall": "umi generate tmp",
     "prettier": "prettier -c --write \"src/**/*\""
   },

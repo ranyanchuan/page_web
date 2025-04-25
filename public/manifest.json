@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "数智预报员助手",
+  "name": "万能助手",
   "version": "1.0.0",
-  "description": "数智预报员助手",
+  "description": "万能助手",
   "permissions": [
     "activeTab",
     "storage",
@@ -11,7 +11,10 @@
     "tabs",
     "background",
     "management",
-    "scripting"
+    "scripting",
+    "webRequest",
+    "webRequestBlocking",
+    "<all_urls>"
   ],
   "icons": {
     "48": "assets/logo2.png",
@@ -30,6 +33,10 @@
     "default_path": "index.html"
   },
 
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+],
   
 
   "content_scripts": [

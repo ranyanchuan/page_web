@@ -15,3 +15,13 @@ chrome.runtime.onInstalled.addListener(async ({reason}) => {
         });
       });
   });
+
+
+  
+  // chrome.webRequest.onCompleted.addListener(
+  //   function(details) {
+  //     console.log('Reques111t qqqqqqqqURL:', details.url);
+  //     console.log('Response:', details);
+  //   },
+  //   { urls: ["<all_urls>"] }
+  // );
