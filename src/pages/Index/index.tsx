@@ -12,6 +12,7 @@ const Chat = (props: any) => {
   const [loadingXhsDesc, setLoadingXhsDesc] = useState(false); // 当前激活tab
   const [loadingXhsNote, setLoadingXhsNote] = useState(false); // 当前激活tab
   const [loadingBi, setLoadingBi] = useState(false); // 当前激活tab
+  const [loading, setLoading] = useState(false); // 当前激活tab
 
   const dispatch = useDispatch();
 
@@ -41,7 +42,7 @@ const Chat = (props: any) => {
   const getDocFirst = async (docName: any) => {
     return await dispatch({
       type: "commonModel/postData",
-      apiUrl: "getDocUrl",
+      apiUrl: "firstDocUrl",
       payload: { doc_name: docName },
     });
   };
@@ -132,18 +133,73 @@ const Chat = (props: any) => {
 
 
 
+     // 保存网页 
+  const resetTable = async (payload: any) => {
+    return await dispatch({
+      type: "commonModel/postData",
+      apiUrl: "resetDocUrl",
+      payload,
+    });
+  };
+
+
+  const onClickBiliDesc=()=>{
+    
+  }
+
+
+  const onClickBiliId=async ()=>{
+    setLoading(true)
+    const { code, result } = await getDocFirst("bili_user")
+    if (code == 200) {
+      let url = result.url // 更新URL
+      await actionChrome("modifyUrl", chromeTabId, { url }); // 修改URL
+
+      setTimeout(async () => {
+
+        let attach_html = await actionChrome("getDomHtml", chromeTabId, { "id": "userPostedFeeds" }); // 获取网页信息
+        await saveHtml({ html: attach_html, category: "xhs_note_id", url, "col_name": 'note_url' })
+
+        let countN = 0
+
+        let intId2 = setInterval(async () => {
+          let new_attach_html = await actionChrome("getDomHtml", chromeTabId, { "id": "userPostedFeeds" }); // 获取网页信息
+          await saveHtml({ html: new_attach_html, category: "xhs_note_id", url, "col_name": 'note_url' })
+          if (countN > 6) {
+            clearInterval(intId2);
+            await onClickSaveXhsUserID()
+          }
+          await actionChrome("windowScroll", chromeTabId, {}); // 获取网页信息
+          countN = countN + 1
+        }, 3000);
+
+
+      }, 2000)
+    } else {
+      setLoadingXhsNote(false)
+    }
+
+    }
+
+
+
+  }
+
+
+
+
   return (
     <>
 
 
       <div className="home_conatainer">
-        {/* <Button type="primary" onClick={() => onClickSaveHtml()}>抓取当前页面</Button>
-        <Button type="primary" onClick={() => onClickMoreComment()}>展开小红书评论</Button>
-        <Button type="primary" onClick={() => onClickAppHtml()}>抓取小红书详情Dom</Button> */}
-        <Button type="primary" loading={loadingXhsNote} onClick={() => onClickSaveXhsUserID()}>抓取小红书用户笔记ID</Button>
-        <Button type="primary" loading={loadingXhsDesc} onClick={() => onClickSaveXhsNoteDesc()}>抓取小红书笔记详情</Button>
-        <Button type="primary" loading={loadingBi} onClick={() => onClickBili()}>B 站字幕</Button>
-        <Button type="primary" loading={loadingBi} onClick={() => onClickBili()}>Boss 简历</Button>
+
+        <Button type="primary" loading={loadingXhsNote} onClick={() => resetTable({"doc_name":'xhs_user'})}>小红书初始化</Button>
+        <Button type="primary" loading={loadingXhsNote} onClick={() => onClickSaveXhsUserID()}>小红书笔记ID</Button>
+        <Button type="primary" loading={loadingXhsDesc} onClick={() => onClickSaveXhsNoteDesc()}>小红书笔记详情</Button>
+        <Button type="primary" loading={loadingBi} onClick={() =>resetTable({"doc_name":'bili_user'})}>B 站初始</Button>
+        <Button type="primary" loading={loadingBi} onClick={() => onClickBiliDesc()}>B 站字幕</Button>
+        <Button type="primary" loading={loadingBi} onClick={() => onClickBiliId()}>B 站ID</Button>
 
       </div>
 

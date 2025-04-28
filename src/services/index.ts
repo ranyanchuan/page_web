@@ -1,6 +1,7 @@
 import { delDataRequest, getDataRequest, postDataRequest, putDataRequest } from "@/utils";
 import { qxjPath } from "@/utils/host";
 
+const baseUrl="http://127.0.0.1:8008"
 const api = {
   routeUrl: "/api/AMiner/route_parse", //
   cHistoryUrl: "/soay/api/AMiner/conversation_history", // 会话历史
@@ -25,12 +26,13 @@ const api = {
   material_url:`${qxjPath()}/translate_suggestion/suggest`,
   text_detection_url:`${qxjPath()}/text_detection/detect`,
 
-  saveHtmlUrl: `http://8.219.212.171:8008/api/v1/xhs/html/add`, // 获取助手信息
-  getDocUrl: `http://8.219.212.171:8008/api/v1/xhs/doc/first`, // 获取助手信息
-
-  // saveHtmlUrl: `http://127.0.0.1:8008/api/v1/xhs/html/add`, // 获取助手信息
-  // getDocUrl: `http://127.0.0.1:8008/api/v1/xhs/doc/first`, // 获取助手信息
-
+  resetDocUrl: `${baseUrl}/api/v1/common/doc/reset`, // 获取助手信息
+  firstDocUrl: `${baseUrl}/api/v1/common/doc/first`, // 获取助手信息
+  updDocUrl: `${baseUrl}/api/v1/common/doc/upd`, // 获取助手信息
+  xhsDescUrl: `${baseUrl}/api/v1/xhs/note/desc/save`, // 获取助手信息
+  xhsIdUrl: `${baseUrl}/api/v1/xhs/note/list/add`, // 获取助手信息
+  biliDesclUrl: `${baseUrl}/api/v1/bili/subtitle/save`, // 获取助手信息
+  biliIdUrl: `${baseUrl}//api/v1/bili/list/add`, // 获取助手信息
   
 }
 
